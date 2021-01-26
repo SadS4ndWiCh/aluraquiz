@@ -5,7 +5,7 @@ import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import QuizContainer from '../src/components/QuizContainer';
-import GithubCorner from '../src/components/githubCorner';
+import GithubCorner from '../src/components/GithubCorner';
 
 export default function Home() {
   return (
