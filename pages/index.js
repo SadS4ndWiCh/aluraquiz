@@ -22,11 +22,13 @@ export default function Home() {
         <meta property='og:url' content='https://aluraquiz.sads4ndwich.vercel.app/' />
         <meta property='og:title' content='Aluraquiz - SadS4ndWiCh' />
         <meta property='og:description' content='Projeto Aluraquiz da Imersão React da Alura criado em NextJS' />
+        <meta property='og:image' content='blob:https://vercel.com/da6a9065-29cb-421f-a08d-4fcd58a9ecbe' />
 
         <meta property='twitter:card' content='summary_large_image' />
         <meta property='twitter:url' content='https://aluraquiz.sads4ndwich.vercel.app/' />
         <meta property='twitter:title' content='Aluraquiz - SadS4ndWiCh' />
         <meta property='twitter:description' content='Projeto Aluraquiz da Imersão React da Alura criado em NextJS' />
+        <meta property='twitter:image' content='blob:https://vercel.com/da6a9065-29cb-421f-a08d-4fcd58a9ecbe' />
       </Head>
 
       <QuizBackground backgroundImage={db.bg}>
