@@ -1,6 +1,8 @@
 import Head from 'next/head';
-import db from '../db.json';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
+import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
@@ -8,7 +10,22 @@ import Footer from '../src/components/Footer';
 import QuizContainer from '../src/components/QuizContainer';
 import GithubCorner from '../src/components/GithubCorner';
 
+import { Title, Text } from '../src/components/MainStyles';
+
 export default function Home() {
+  const [name, setName] = useState('');
+  const router = useRouter();
+
+  function inputChangeHandler(e) {
+    setName(e.target.value);
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+
+    router.push(`/quiz?name=${name}`);
+  }
+
   return (
     <>
       <Head>
@@ -56,19 +73,35 @@ export default function Home() {
           <QuizLogo />
           <Widget>
             <Widget.Header>
-              <h1>{db.title}</h1>
+              <Title>{db.title}</Title>
             </Widget.Header>
 
             <Widget.Content>
-              <p>{db.description}</p>
+              <Text>{db.description}</Text>
+
+              <Widget.Form onSubmit={submitHandler}>
+                <Widget.Input onChange={inputChangeHandler} name='name' placeholder='Diz aí seu nome pra jogar :)' required />
+
+                <Widget.Button
+                  type='submit'
+                  disabled={!!!name}
+                  upper='uppercase'
+                  letter='2px'
+
+                >Jogar</Widget.Button>
+              </Widget.Form>
             </Widget.Content>
           </Widget>
 
           <Widget>
             <Widget.Content>
-              <h1>Quizes da Galera</h1>
+              <Title>Quizes da Galera</Title>
 
-              <p>Lorem ipsum dolor sit amet...</p>
+              <Text>Acesse outros quizes feitos durante a 2ª Imersão Alura!</Text>
+
+              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
+              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
+              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
             </Widget.Content>
           </Widget>
 
