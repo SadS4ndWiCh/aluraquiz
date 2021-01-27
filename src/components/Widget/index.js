@@ -7,7 +7,7 @@ const Widget = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius};
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: ${({ theme }) => theme.shadow};
 
     background-color: ${({ theme }) => theme.colors.mainBg};
 
@@ -58,6 +58,75 @@ Widget.Content = styled.div`
 
         padding: 0;
     }
+`;
+
+Widget.Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px
+`;
+
+Widget.Input = styled.input`
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  background: transparent;
+  
+  color: ${({ theme }) => theme.colors.inputText};
+
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.inputText};
+    opacity: .8;
+  }
+`;
+
+Widget.Button = styled.button`
+  width: 100%;
+  height: 30px;
+
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  
+  letter-spacing: ${(props) => props.letter || 'initial'};
+  text-transform: ${(props) => props.upper || 'initial'};
+
+  background-color: ${(props) => props.bg || props.theme.colors.primary};
+  color: ${(props) => props.color || 'white'};
+`;
+
+Widget.Select = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 25px;
+
+  margin-top: 5px;
+
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  text-decoration: none;
+  font-size: 14px;
+
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${(props) => props.color || 'white'};
+
+  cursor: ${(props) => props.disabled ? '' : 'pointer'};
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: .6;
+  }
 `;
 
 export default Widget;
