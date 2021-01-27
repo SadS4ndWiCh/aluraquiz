@@ -60,14 +60,6 @@ Widget.Content = styled.div`
     }
 `;
 
-Widget.Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 10px
-`;
-
 Widget.Input = styled.input`
   width: 100%;
 
@@ -100,6 +92,11 @@ Widget.Button = styled.button`
 
   background-color: ${(props) => props.bg || props.theme.colors.primary};
   color: ${(props) => props.color || 'white'};
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
 `;
 
 Widget.Select = styled.a`
@@ -127,6 +124,33 @@ Widget.Select = styled.a`
   &:hover {
     opacity: .6;
   }
+`;
+
+Widget.Topic = styled.a`
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 5px;
+  padding: 10px 15px;
+
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  text-decoration: none;
+
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
+
+  transition: .3s;
+
+  &:hover,
+  &:focus {
+    opacity: .5;
+  }
+
+  cursor: pointer;
+
 `;
 
 export default Widget;
