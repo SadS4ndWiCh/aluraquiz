@@ -10,7 +10,9 @@ import Footer from '../src/components/Footer';
 import QuizContainer from '../src/components/QuizContainer';
 import GithubCorner from '../src/components/GithubCorner';
 
+import Form from '../src/components/Form';
 import { Title, Text } from '../src/components/MainStyles';
+import Input from '../src/components/Input';
 
 export default function Home() {
   const [name, setName] = useState('');
@@ -21,8 +23,6 @@ export default function Home() {
   }
 
   function submitHandler(e) {
-    e.preventDefault();
-
     router.push(`/quiz?name=${name}`);
   }
 
@@ -79,8 +79,14 @@ export default function Home() {
             <Widget.Content>
               <Text>{db.description}</Text>
 
-              <Widget.Form onSubmit={submitHandler}>
-                <Widget.Input onChange={inputChangeHandler} name='name' placeholder='Diz aí seu nome pra jogar :)' required />
+              <Form handleSubmit={submitHandler}>
+                <Input
+                  onChange={inputChangeHandler}
+                  name='name'
+                  placeholder='Diz aí seu nome pra jogar :)'
+                  autoComplete='off'
+                  required
+                />
 
                 <Widget.Button
                   type='submit'
@@ -89,7 +95,7 @@ export default function Home() {
                   letter='2px'
 
                 >Jogar</Widget.Button>
-              </Widget.Form>
+              </Form>
             </Widget.Content>
           </Widget>
 
