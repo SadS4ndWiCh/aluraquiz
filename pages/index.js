@@ -14,7 +14,7 @@ import Form from '../src/components/Form';
 import { Title, Text } from '../src/components/MainStyles';
 import Input from '../src/components/Input';
 
-export default function Home() {
+export default function Home(props) {
   const [name, setName] = useState('');
   const router = useRouter();
 
