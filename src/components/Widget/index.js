@@ -97,6 +97,8 @@ Widget.Button = styled.button`
     opacity: .6;
     cursor: not-allowed;
   }
+
+  cursor: pointer;
 `;
 
 Widget.Select = styled.a`
@@ -127,8 +129,7 @@ Widget.Select = styled.a`
 `;
 
 Widget.Topic = styled.a`
-  display: flex;
-  align-items: center;
+  display: block;
 
   width: 100%;
 
