@@ -11,6 +11,8 @@ import AlternativesForm from '../src/components/AlternativesForm';
 import CardMessage from '../src/components/CardMessage';
 import BackLinkArrow from '../src/components/BackLinkArrow';
 
+import QuizService from '../src/services/QuizService';
+
 import calculePointsByResults from '../src/utils/calculePointsByResults';
 
 function ResultWidget({ username, results }) {
@@ -144,13 +146,13 @@ const screenStates = {
   RESULT: 1,
 };
 
-export default function QuizPage(props) {
+export default function QuizPage({ questions }) {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [results, setResults] = useState([]);
 
-  const totalQuestions = db.questions.length;
-  const question = db.questions[currentQuestionIndex];
+  const totalQuestions = questions.length;
+  const question = questions[currentQuestionIndex];
 
   const router = useRouter();
   const { name } = router.query;
@@ -200,4 +202,17 @@ export default function QuizPage(props) {
       </QuizContainer>
     </QuizBackground>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  const { url } = ctx.query;
+  const { host } = ctx.req.headers;
+
+  const questions = await QuizService.getQuestions(url || host, { failReturnDefault: true, currentHost: host });
+
+  return {
+    props: {
+      questions
+    }
+  }
 }
