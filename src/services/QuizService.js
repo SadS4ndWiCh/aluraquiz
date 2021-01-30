@@ -1,24 +1,20 @@
-import isValidDBUrl from '../utils/isValidDBUrl';
-import adjustUrl from '../utils/adjustUrl';
-
 export default {
-  async getQuestions(url, options = {}) {
-    const { failReturnDefault, currentHost } = options;
-    url = adjustUrl(url);
+  // Pega as questões passando uma URL
+  async getQuestions(url) {
+    const data = await fetch(url)
+      .then(res => res.json())
+      .catch(() => {
+        console.log('[Get Questions] Falha ao fazer requisição');
+      });
 
-    const isValid = await isValidDBUrl(url);
-    
-    if(!isValid) {
-      if(failReturnDefault) {
-        url = `http://${currentHost}/api/db`;
-      } else {
-        return null;
-      }
-    };
-    
-    const res = await fetch(url);
-    const data = await res.json();
+    if(!data) {
+      return { questions: [] }
+    }
 
-    return data.questions;
-  }
+    return {
+      questions: data.questions
+    }
+  },
+
+  // Dependendo poderia adicionar outros serviços para pegar outras informações e talz..
 }
