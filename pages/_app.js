@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     flex: 1;
     flex-direction: column;
   }
+
 `;
 
 const { theme } = db;
