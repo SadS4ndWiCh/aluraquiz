@@ -149,7 +149,7 @@ Widget.Topic = styled.a`
   &:focus {
     opacity: .5;
   }
-
+  
   cursor: pointer;
 
 `;
