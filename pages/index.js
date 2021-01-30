@@ -4,15 +4,17 @@ import { useRouter } from 'next/router';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
+import Link from '../src/components/Link';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import QuizContainer from '../src/components/QuizContainer';
 import GithubCorner from '../src/components/GithubCorner';
-
 import Form from '../src/components/Form';
-import { Title, Text } from '../src/components/MainStyles';
 import Input from '../src/components/Input';
+import { Title, Text } from '../src/components/MainStyles';
+
+import getNamesFromUrl from '../src/utils/getNamesFromUrl';
 
 export default function Home(props) {
   const [name, setName] = useState('');
@@ -105,9 +107,21 @@ export default function Home(props) {
 
               <Text>Acesse outros quizes feitos durante a 2ª Imersão Alura!</Text>
 
-              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
-              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
-              <Widget.Select href='#'>algumquiz.vercel.app</Widget.Select>
+              { db.external.map((quizUrl, index) => {
+                const { gitHubUser, projectName } = getNamesFromUrl(quizUrl);
+                
+                return (
+                  <Widget.Topic 
+                    as={Link}
+                    key={`external__${index}`}
+                    href={`/quiz/${projectName}_${gitHubUser}?name=${name}`}
+
+                    disabled={!!!name}
+                  >
+                      {`${gitHubUser}/${projectName}`}
+                  </Widget.Topic>
+                )
+              }) }
             </Widget.Content>
           </Widget>
 
